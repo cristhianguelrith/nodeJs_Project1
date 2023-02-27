@@ -25,15 +25,15 @@ async function main() {
     app.use(express.json());
 
         // Read All Endpoint
-    app.get("/times", async function (req,res) {
+    app.get("/times", async function (req, res) {
         const resReadAll = await collection.find().toArray();
         res.send(resReadAll);
     });
 
         // Read Single by ID Endpoint
-    app.get("times/:id", async function (req,res) {
-        const idTime = req.params.id;
-        const time = await collection.findOne({ _id: new ObjectId(time) });
+    app.get("/times/:id", async function (req,res) {
+        const id = req.params.id;
+        const time = await collection.findOne({ _id: new ObjectId(id) });
         res.send(time);
     });
 
@@ -56,7 +56,7 @@ async function main() {
     });
 
         // Delete Endpoint
-    app.delete("/item/:id", async function (req, res) {
+    app.delete("/times/:id", async function (req, res) {
         const id = req.params.id;
         await collection.deleteOne({ _id: new ObjectId(id) });
         res.send("Registro removido com sucesso!");
